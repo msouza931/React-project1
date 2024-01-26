@@ -1,45 +1,36 @@
-import RecipeCard from "./components/RecipeCard";
+import { useEffect, useState } from "react";
+import Recipe from "./components/Recipe";
 
 
-const recipeList = [
-  {
-  id: 0,
-  name: "Homemade Ramen",
-  rating: null,
-  category: "Asian"
-  },
-  {
-    id: 1,
-    name: "Feijoada",
-    rating: null,
-    category: "Latin"
-  },
-  {
-    id: 3,
-    name: "Tuscan Chicken",
-    rating: null,
-    category: "Italian"
-  },
-  {
-    id: 4,
-    name: "BBQ Ribs",
-    rating: null,
-    category: "American"
-  },
-  {
-    id: 5,
-    name: "Beef Stew",
-    rating: null,
-    category: "Latin"
-  },
+const App = () => {
 
-]
+  //const APP_ID = "1a31899f";
+  //const APP_KEY = "39acdc8b66edfd5b9e1c91a30a9012df";
 
-function App() {
+  const [recipes, setRecipes] = useState([]);
+
+  useEffect(()=> {
+    getRecipes();
+  }, []);
+
+  const getRecipes = async () => {
+    const response = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=1a31899f&app_key=39acdc8b66edfd5b9e1c91a30a9012df`);
+    const data = await response.json();
+    setRecipes(data.hits);
+    console.log(data.hits);
+  }
+
+
   return (
-    <div>
+    <div className="App">
+      <form className="search-form">
+        <input className="search-bar" type='text'/>
+        <button className="search-button" type="submit"></button>
+      </form>
+      {recipes.map(recipe => (
+        <Recipe title={recipe.recipe.label} image={recipe.recipe.image} ingredients={recipe.recipe.ingredients} />
+      ))}
       <h1>Recipe App</h1>
-      { recipeList.map( recipe1 => <RecipeCard recipe={recipe1}/> )}
     </div>
   );
 }
