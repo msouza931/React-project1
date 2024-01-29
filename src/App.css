@@ -1,18 +1,25 @@
 .App {
     text-align: center;
-    
+    background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
+
   }
   
   .search-form {
-    margin-bottom: 20px;
+    min-height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
   }
   
   .search-bar {
-    padding: 2px;
+    padding: 8px;
+    width: 50%;
   }
   
   .search-button {
     font-size: 14px;
+    padding: 10px 20px;
   }
   
   .recipes-container {
@@ -21,3 +28,9 @@
     justify-content: center;
   }
   
+  .recipes {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+  }
