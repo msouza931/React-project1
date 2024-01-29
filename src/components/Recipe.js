@@ -5,10 +5,10 @@ const Recipe = ({title, ingredients, image}) => {
     <div>
         <h1>{title}</h1>
         <ul>
-        {ingredients.map((ingredient, index) => (
-          <li key={index}>{ingredient.text}</li>
-        ))}
-      </ul>
+          {ingredients.map((ingredient, index) => (
+            <li key={index}>{ingredient.text}</li>
+          ))}
+        </ul>
         <img src={image} alt='' />
     </div>
   );
